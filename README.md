@@ -1,4 +1,4 @@
-# MSCH
+# MSCH :mouse:
 Mouse speed changer
 
 ## Contributing
