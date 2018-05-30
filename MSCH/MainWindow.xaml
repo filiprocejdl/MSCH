@@ -7,7 +7,17 @@
         mc:Ignorable="d"
         Title="MainWindow" Height="450" Width="800">
     <Grid>
-        <Button Content="FAST" HorizontalAlignment="Left" Margin="177,172,0,0" VerticalAlignment="Top" Width="75"/>
-        <Button Content="SLOW" HorizontalAlignment="Left" Margin="447,177,0,0" VerticalAlignment="Top" Width="75"/>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="250" />
+            <RowDefinition Height="Auto" />
+        </Grid.RowDefinitions>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="400" />
+            <ColumnDefinition Width="*" />
+        </Grid.ColumnDefinitions>
+        <Button Grid.Column="0" Background="White" BorderBrush="Gray" Foreground="Gray" Grid.Row="1" Content="FAST" HorizontalAlignment="Left" Width="76" Margin="162,0,0,0.667" Height="21" VerticalAlignment="Bottom" Click="Button_Fast"/>
+        <Button Grid.Column="1" Background="White" BorderBrush="Gray" Foreground="Gray" Grid.Row="1" Content="SLOW" HorizontalAlignment="Center" VerticalAlignment="Center" Width="75" Click="Button_Slow"/>
+        <Button Grid.Column="0" Grid.ColumnSpan="2" Background="White" BorderBrush="Gray" Foreground="Gray" Grid.Row="1" Content="NORMAL" HorizontalAlignment="Center" VerticalAlignment="Center" Width="75" Click="Button_Normal"/>
+        <Image Grid.Column="0" Grid.ColumnSpan="2" Source="pics/logo.png" Stretch="Fill" Height="200" Width="200"/>
     </Grid>
 </Window>
