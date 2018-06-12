@@ -1,5 +1,7 @@
-﻿using System.Collections.ObjectModel;
+﻿using System;
+using System.Collections.ObjectModel;
 using System.ComponentModel;
+using System.Runtime.InteropServices;
 using System.Windows;
 using GalaSoft.MvvmLight.Command;
 
@@ -8,33 +10,52 @@ namespace MSCH
     /// <summary>
     /// INotifyPropertyChanged je nutné pro funkčnost eventu PropertyChanged
     /// </summary>
+    /// 
+
     internal class MvvmlightCommandViewModel : INotifyPropertyChanged
     {
-        private int _numberOfClicks;
-        /// <summary>
-        ///     Veřejné přístupové rozhraní pro proměnnou, která je iterována pomocí Buttonu
-        /// </summary>
-        public int NumberOfClicks
+        const UInt32 SPI_SETMOUSESPEED = 0x0071;
+
+        [DllImport("User32.dll")]
+        static extern Boolean SystemParametersInfo(
+            UInt32 uiAction,
+            UInt32 uiParam,
+            UInt32 pvParam,
+            UInt32 fWinIni);
+
+
+        private int _SpeedValue;
+        public int SpeedValue
         {
-            get => _numberOfClicks;
+            get => _SpeedValue;
             set
             {
-                _numberOfClicks = value;
-                // Po změně hodnoty proměnné je nutné oznámit View tuto změnu, aby se mohlo View obnovit (refresh)
-                OnPropertyChanged("NumberOfClicks");
+                _SpeedValue = value;
+
+                OnPropertyChanged("SpeedValue");
             }
         }
 
-        public event PropertyChangedEventHandler PropertyChanged;
-
-        /// <summary>
-        ///     Metoda volaná Commandem, který je Bindovaný na Button
-        /// </summary>
-        private void ClickMethod()
+        private void MouseSpeed(int speed)
         {
-            NumberOfClicks++;
+            UInt32 MOUSESPEED = (uint)speed;
+
+            SystemParametersInfo(
+                SPI_SETMOUSESPEED,
+                0,
+                MOUSESPEED,
+                0);
+
         }
 
+        public RelayCommand<int> ChangeSpeed { get; }
+
+        public MvvmlightCommandViewModel()
+        {
+            ChangeSpeed = new RelayCommand<int>(MouseSpeed);
+        }
+
+        public event PropertyChangedEventHandler PropertyChanged;
 
         protected void OnPropertyChanged(string name)
         {
@@ -42,5 +63,8 @@ namespace MSCH
             if (handler != null)
                 handler(this, new PropertyChangedEventArgs(name));
         }
+
+
+
     }
 }
