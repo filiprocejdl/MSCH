@@ -21,7 +21,9 @@ namespace MSCH
     /// </summary>
     public partial class MainWindow : Window
     {
-            
+        const UInt32 SPI_SETMOUSESPEED = 0x0071;
+        int speed;
+
         [DllImport("User32.dll")]
         static extern Boolean SystemParametersInfo(
             UInt32 uiAction,
@@ -36,10 +38,9 @@ namespace MSCH
         }
 
         //CHANGE const MOUSESPEED 
-        private void Button_Fast(object sender, RoutedEventArgs e)
+        private void MouseSpeed(int speed)
         {
-            const UInt32 SPI_SETMOUSESPEED = 0x0071;
-            const UInt32 MOUSESPEED = 10;
+             UInt32 MOUSESPEED = (uint)speed;
 
             SystemParametersInfo(
                 SPI_SETMOUSESPEED,
@@ -49,28 +50,9 @@ namespace MSCH
 
         }
 
-        private void Button_Slow(object sender, RoutedEventArgs e)
+        private void Button_Click(object sender, RoutedEventArgs e)
         {
-            const UInt32 SPI_SETMOUSESPEED = 0x0071;
-            const UInt32 MOUSESPEED = 1;
-
-            SystemParametersInfo(
-                SPI_SETMOUSESPEED,
-                0,
-                MOUSESPEED,
-                0);
-        }
-
-        private void Button_Normal(object sender, RoutedEventArgs e)
-        {
-            const UInt32 SPI_SETMOUSESPEED = 0x0071;
-            const UInt32 MOUSESPEED = 5;
-
-            SystemParametersInfo(
-                SPI_SETMOUSESPEED,
-                0,
-                MOUSESPEED,
-                0);
+            MouseSpeed();
         }
     }
 }
