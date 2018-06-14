@@ -46,6 +46,8 @@ namespace MSCH
                 MOUSESPEED,
                 0);
 
+            Console.Write("funguje");
+
         }
 
         public RelayCommand<int> ChangeSpeed { get; }

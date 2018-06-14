@@ -28,6 +28,7 @@ namespace MSCH
         public MainWindow()
         {
             InitializeComponent();
+            this.DataContext = new MvvmlightCommandViewModel();
         }
 
         

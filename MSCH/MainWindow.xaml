@@ -20,9 +20,9 @@
             <ColumnDefinition Width="250" />
             <ColumnDefinition Width="*" />
         </Grid.ColumnDefinitions>
-        <Image Grid.ColumnSpan="3" Grid.Row="0" Source="msch.png" Stretch="Fill" />
+        <Image Grid.ColumnSpan="3" Grid.Row="0" Source="pics/msch.png" Stretch="Fill" />
         <Separator Grid.ColumnSpan="3" Grid.Row="1" Height="20" Width="350"/>
-        <Slider Grid.Column="1"  Grid.Row="2" VerticalAlignment="Center" Width="200" Minimum="1" Value="{Binding SpeedValue}" />
+        <Slider Grid.Column="1"  Grid.Row="2" VerticalAlignment="Center" Width="200" Minimum="1" Maximum="10" Value="{Binding SpeedValue}" />
         <Label Content="Mouse speed" Grid.Column="1" Grid.Row="2" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="20,0,0,0" Height="25" />
         <CheckBox Content="Swap mouse buttons" Grid.Column="1" HorizontalAlignment="Left" Grid.Row="3" VerticalAlignment="Top" Margin="20,0,0,0"/>
         <CheckBox Content="Reverse Scroll Direction" Grid.Column="1" HorizontalAlignment="Left" Grid.Row="3" VerticalAlignment="Center" Margin="20,0,0,0"/>
