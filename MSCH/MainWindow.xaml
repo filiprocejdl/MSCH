@@ -5,7 +5,9 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:MSCH"
         mc:Ignorable="d"
-        Title="MainWindow" Height="500" Width="450">
+        Title="MouseSpeedChanger" Height="500" Width="450"
+        StateChanged="Window_StateChanged"
+        >
     <Grid>
         <Grid.RowDefinitions>
             <RowDefinition Height="150" />
